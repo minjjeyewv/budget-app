@@ -20,7 +20,7 @@ let levelValue = document.getElementsByClassName('level-value')[0];
 let incomeValue = document.getElementsByClassName('income-value')[0];
 let monthSavingsValue = document.getElementsByClassName('monthsavings-value')[0];
 let yearSavingsValue = document.getElementsByClassName('yearsavings-value')[0];
-let money, time; // Создаём переменные на глобальном уровне
+let money, time; // Получаем объекты со страницы
 
 startBtn.addEventListener('click', function(){
     time = prompt("Введите дату в формате YYYY-MM-DD", "");
@@ -40,7 +40,7 @@ startBtn.addEventListener('click', function(){
     appData.budget = money;
     appData.timeData = time;
     budgetValue.textContent = money.toFixed();
-});
+});   // функция для начала расчёта бюджета и даты
 btnApproveOne.addEventListener('click', function(){
     let sum = 0;
     for (let i = 0; i < expensesInput.length; i++) {
@@ -55,7 +55,7 @@ btnApproveOne.addEventListener('click', function(){
         }
     };
     expensesValue.textContent = sum;
-});
+});   // Функция для подсчёта обязательных расходов
 btnApproveTwo.addEventListener('click', function(){
     for (let i = 0; i < notExpensesInput.length ; i++) {
         let opt = +notExpensesInput[i].value;
@@ -63,7 +63,7 @@ btnApproveTwo.addEventListener('click', function(){
         optionalExpensesValue.textContent += appData.optionalExpenses[i] + ' ';
     } // Записываем необязательные расходы в объект optionalExpenses
 
-});
+});  // необязательные расходы
 btnCalculate.addEventListener('click', function(){
     if (appData.budget != undefined){
     appData.moneyPerDay = (appData.budget / 30).toFixed();
@@ -85,18 +85,18 @@ btnCalculate.addEventListener('click', function(){
         daybudgetValue.textContent = 'Произошла ошибка!';
     }
     // Проверяем уровень достатка используя условие If и логический оператор &&(и)
-})
+}); // функция для расчёта уровня достатка
 possibleIncome.addEventListener('input', function(){
     let items = possibleIncome.value;
     appData.income = items.split(', ');   // разибите строки в массив
     incomeValue.textContent = appData.income;
-})
+}) // записываем способы дополнительного зароботка
 checkboxSavings.addEventListener('click', function(){
     if (appData.savings === true){
         appData.savings = false;
     }
     else appData.savings = true;
-});
+}); // проверяем в каком состоянии находится чекбокс и меняем его при клике
 sum.addEventListener('input', function(){
     if (appData.savings === true){
         let sum2 = +sum.value;
@@ -106,7 +106,7 @@ sum.addEventListener('input', function(){
         monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
         yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
     }
-})
+}); // подсчёт суммы дополнительного зароботка
 percent.addEventListener('input', function(){
     if (appData.savings === true){
         let sum2 = +sum.value;
@@ -116,7 +116,7 @@ percent.addEventListener('input', function(){
         monthSavingsValue.textContent = appData.monthIncome.toFixed(1);
         yearSavingsValue.textContent = appData.yearIncome.toFixed(1);
     }
-})
+}); // подсчёт процентов дополнителного зароботка
 
 let appData = {
     budget: money,
